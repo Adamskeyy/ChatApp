@@ -3,6 +3,8 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 // react native
 import { View, Text } from 'react-native';
+// components
+import Chatroom from './Chatroom';
 
 const CHATROOMS = gql`
   query GetRoomsAndUsers {
@@ -22,7 +24,7 @@ const ChatroomList = () => {
   if (error) return <p>Error :(</p>;
 
   const roomsToDisplay = data.usersRooms.rooms.map(({ id, name, roomPic }) => (
-    <Text key={id}>{name}</Text>
+    <Chatroom name={name} roomPic={roomPic} key={id} />
   ));
 
   return (
