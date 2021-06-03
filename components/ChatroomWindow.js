@@ -13,19 +13,15 @@ import { FontAwesome } from '@expo/vector-icons';
 import { colors } from '../utils';
 // components
 import RoomNavigation from './RoomNavigation';
-// nav
-// chat history
-// input field
-// send button
+import Message from './Message';
 
 const ChatroomWindow = () => {
   const [message, setMessageText] = useState('');
   return (
     <View style={styles.container}>
       <RoomNavigation />
-      <View style={styles.chatHistory}>
-        <Text>Hello there</Text>
-      </View>
+      <Message sentByMe={false} />
+      <Message sentByMe={true} />
       <View style={styles.inputBar}>
         <TextInput
           placeholder="Type new message..."
