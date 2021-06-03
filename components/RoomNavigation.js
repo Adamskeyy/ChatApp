@@ -27,7 +27,6 @@ const RoomNavigation = () => {
 
 const styles = StyleSheet.create({
   navigation: {
-    flex: 1,
     flexDirection: 'row',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
