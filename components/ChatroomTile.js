@@ -1,18 +1,17 @@
 import React from 'react';
-import { useState } from 'react';
 // react native
 import { Text, View, Image, StyleSheet } from 'react-native';
 // utils
 import { colors } from '../utils';
 
-const Chatroom = ({ name, roomPic }) => {
+const ChatroomTile = ({ name, roomPic }) => {
   const chatroomPicture = roomPic
     ? roomPic
     : 'https://i.ytimg.com/vi/LqlspMJdq8E/maxresdefault.jpg';
   return (
     <View style={styles.container}>
       <View style={styles.chatroomTile}>
-        <Image style={styles.logo} source={chatroomPicture} />
+        {/* <Image style={styles.logo} source={chatroomPicture} /> */}
         <Text style={styles.chatroomName}>{name}</Text>
       </View>
     </View>
@@ -41,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Chatroom;
+export default ChatroomTile;

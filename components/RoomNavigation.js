@@ -1,24 +1,24 @@
 import React from 'react';
 // react native
 import { View, Text, StyleSheet } from 'react-native';
-import { SimpleLineIcons, Ionicons } from '@expo/vector-icons';
+import { Octicons, FontAwesome } from '@expo/vector-icons';
 // utils
 import { colors } from '../utils';
 
 const RoomNavigation = () => {
   return (
     <View style={styles.navigation}>
-      <Text style={styles.header}>Rooms</Text>
+      <Text style={styles.header}>CHAT</Text>
       <View style={styles.icons}>
         <View style={styles.icon}>
-          <SimpleLineIcons
-            name="magnifier"
+          <FontAwesome name="phone" size={25} color={colors.SECONDARY_COLOR} />
+        </View>
+        <View style={styles.icon}>
+          <Octicons
+            name="device-camera-video"
             size={25}
             color={colors.SECONDARY_COLOR}
           />
-        </View>
-        <View style={styles.icon}>
-          <Ionicons name="people" size={25} color={colors.SECONDARY_COLOR} />
         </View>
       </View>
     </View>

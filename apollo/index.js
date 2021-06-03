@@ -6,7 +6,7 @@ import {
   ApolloLink,
 } from '@apollo/client';
 // env constants
-import getEnvVars from './environment';
+import getEnvVars from '../environment';
 const { token, endpoint } = getEnvVars();
 
 const httpLink = new HttpLink({ uri: endpoint });

@@ -2,9 +2,15 @@ import React from 'react';
 // apollo
 import { useQuery, gql } from '@apollo/client';
 // react native
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 // components
-import Chatroom from './Chatroom';
+import ChatroomTile from './ChatroomTile';
 import RoomsNavigation from './RoomsNavigation';
 
 const CHATROOMS = gql`
@@ -19,7 +25,7 @@ const CHATROOMS = gql`
   }
 `;
 
-const ChatroomList = () => {
+const ChatroomList = ({ navigation }) => {
   const { loading, error, data } = useQuery(CHATROOMS);
   if (loading)
     return (
@@ -30,7 +36,9 @@ const ChatroomList = () => {
   if (error) return <Text>Error</Text>;
 
   const roomsToDisplay = data.usersRooms.rooms.map(({ id, name, roomPic }) => (
-    <Chatroom name={name} roomPic={roomPic} key={id} />
+    <TouchableOpacity key={id} onPress={() => navigation.navigate('Chat')}>
+      <ChatroomTile name={name} roomPic={roomPic} />
+    </TouchableOpacity>
   ));
 
   return (
