@@ -11,7 +11,7 @@ const ChatroomTile = ({ name, roomPic }) => {
   return (
     <View style={styles.container}>
       <View style={styles.chatroomTile}>
-        {/* <Image style={styles.logo} source={chatroomPicture} /> */}
+        <Image style={styles.logo} source={chatroomPicture} />
         <Text style={styles.chatroomName}>{name}</Text>
       </View>
     </View>

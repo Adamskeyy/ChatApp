@@ -8,7 +8,7 @@ import { colors } from '../utils';
 const RoomNavigation = () => {
   return (
     <View style={styles.navigation}>
-      <Text style={styles.header}>CHAT</Text>
+      <Text style={styles.header}>Chat</Text>
       <View style={styles.icons}>
         <View style={styles.icon}>
           <FontAwesome name="phone" size={25} color={colors.SECONDARY_COLOR} />
