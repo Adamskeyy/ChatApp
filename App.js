@@ -17,11 +17,8 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     flex: 1,
     backgroundColor: colors.BACKGROUND_COLOR,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
