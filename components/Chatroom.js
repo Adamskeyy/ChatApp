@@ -6,17 +6,13 @@ import { Text, View, Image, StyleSheet } from 'react-native';
 import { colors } from '../utils';
 
 const Chatroom = ({ name, roomPic }) => {
+  const chatroomPicture = roomPic
+    ? roomPic
+    : 'https://i.ytimg.com/vi/LqlspMJdq8E/maxresdefault.jpg';
   return (
     <View style={styles.container}>
       <View style={styles.chatroomTile}>
-        <Image
-          style={styles.logo}
-          source={
-            roomPic
-              ? roomPic
-              : 'https://i.ytimg.com/vi/LqlspMJdq8E/maxresdefault.jpg'
-          }
-        />
+        <Image style={styles.logo} source={chatroomPicture} />
         <Text style={styles.chatroomName}>{name}</Text>
       </View>
     </View>
