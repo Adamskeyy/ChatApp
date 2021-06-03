@@ -2,9 +2,11 @@ import React from 'react';
 // apollo
 import { useQuery, gql } from '@apollo/client';
 // react native
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 // components
 import Chatroom from './Chatroom';
+// utils
+import { colors } from '../utils';
 
 const CHATROOMS = gql`
   query GetRoomsAndUsers {
@@ -29,10 +31,23 @@ const ChatroomList = () => {
 
   return (
     <View>
-      <Text>Rooms</Text>
+      <Text style={styles.header}>Rooms</Text>
       {roomsToDisplay}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 40,
+    flex: 1,
+    backgroundColor: colors.PRIMARY_COLOR,
+    color: colors.SECONDARY_COLOR,
+    padding: 20,
+    fontWeight: 700,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default ChatroomList;

@@ -2,7 +2,6 @@
 import {
   ApolloClient,
   InMemoryCache,
-  gql,
   HttpLink,
   ApolloLink,
 } from '@apollo/client';
