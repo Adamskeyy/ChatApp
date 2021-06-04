@@ -17,6 +17,12 @@ import Message from './Message';
 
 const ChatroomWindow = () => {
   const [message, setMessageText] = useState('');
+  // todo:
+  // sendMessage mutation (for sending message)
+  // messageAdded subscription (listening for every message)
+
+  const handleMessageSend = () => {};
+
   return (
     <View style={styles.container}>
       <RoomNavigation />
@@ -26,9 +32,9 @@ const ChatroomWindow = () => {
         <TextInput
           placeholder="Type new message..."
           style={styles.input}
-          onChange={setMessageText}
+          onChange={(e) => setMessageText(e.target.value)}
         />
-        <TouchableHighlight onPress={() => alert('CLICK')}>
+        <TouchableHighlight onPress={() => alert(message)}>
           <View style={styles.icon}>
             <FontAwesome name="send" size={35} color={colors.SECONDARY_COLOR} />
           </View>

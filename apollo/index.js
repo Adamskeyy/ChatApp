@@ -1,27 +1,49 @@
 // apollo
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  ApolloLink,
-} from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import { setContext } from 'apollo-link-context';
+import { split } from 'apollo-link';
+// phoenix / absinthe
+import * as AbsintheSocket from '@absinthe/socket';
+import { createAbsintheSocketLink } from '@absinthe/socket-apollo-link';
+import { Socket as PhoenixSocket } from 'phoenix';
+import { hasSubscription } from '@jumpn/utils-graphql';
 // env constants
 import getEnvVars from '../environment';
-const { token, endpoint } = getEnvVars();
+const { token, httpEndpoint, wssEndpoint } = getEnvVars();
 
-const httpLink = new HttpLink({ uri: endpoint });
+// http link
+const httpLink = new HttpLink({ uri: httpEndpoint });
 
-const authLink = new ApolloLink((operation, forward) => {
-  operation.setContext({
+const authLink = setContext((_, { headers }) => {
+  return {
     headers: {
+      ...headers,
       authorization: `Bearer ${token}`,
     },
-  });
-  return forward(operation);
+  };
 });
 
+const authedHttpLink = authLink.concat(httpLink);
+
+// websocket
+const phoenixSocket = new PhoenixSocket(wssEndpoint, {
+  params: () => {
+    return { token: token };
+  },
+});
+const absintheSocket = AbsintheSocket.create(phoenixSocket);
+const websocketLink = createAbsintheSocketLink(absintheSocket);
+
+const link = split(
+  (operation) => hasSubscription(operation.query),
+  websocketLink,
+  authedHttpLink
+);
+
+const cache = new InMemoryCache();
+
+// apollo client
 export const client = new ApolloClient({
-  uri: endpoint,
-  cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
+  link,
+  cache,
 });
